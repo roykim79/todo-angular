@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<meta charset=utf-8 />
+<title>Angular Todo</title>
+</head>
+<body ng-controller="TodoCtrl">
+  <div class="container">
+    <div class='search-box'>
+      <span class="glyphicon glyphicon-filter"></span>
+      <input type="text" placeholder="Search..." class="form-ctrl" ng-model="searchTodo" ng-keydown="kyd($event)">
+    </div>
+    <h1>My To Do List</h1>
+    
+    <!-- Form to add new item -->
+    <form action="" class="form-container" ng-submit="addTodo()">
+      <input type="text" placeholder="Add new task..." class="form-ctrl" id="new-todo" ng-model="newTodo">
+    </form>
+    
+    <!-- Dashboard filtered by status-->
+    <section class="container dashboard">
+      <span class="count">{{ todos.length }}</span> Tasks
+      <span class="count">{{ (todos | filter:{status:'doing'}).length }}</span> In Progress
+      <span class="count">{{ (todos | filter:{status:'done'}).length }}</span> Done
+    </section>
+    
+    <!-- List of items ordered by status-->
+    <ul ng-repeat="todo in todos | filter: searchTodo | orderBy: 'status'">
+      <li>
+        <select name="" ng-class="{do: todo.status == 'do', doing: todo.status == 'doing', done: todo.status == 'done'}" id="" ng-model="todo.status">
+          <option value="do">Do</option>
+          <option value="doing">Doing</option>
+          <option value="done">Done</option>
+        </select>
+        <span>
+          <input ng-class="{do: todo.status == 'do', doing: todo.status == 'doing', done: todo.status == 'done'}" type="text" ng-model="todo.task">
+        </span>
+        
+        <a href="" ng-click="removeTodo($index)">x</a>
+      </li>
+    </ul>
+    
+    <!-- This is a list of status doing -->
+    <ul>
+      <li ng-repeat="todo in (todos | filter:{status:'doing'})">
+        <span ng-class="{do: todo.status == 'do', doing: todo.status == 'doing', done: todo.status == 'done'}">{{ todo.task }}</span>
+      </li>
+    </ul>
+  </div>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

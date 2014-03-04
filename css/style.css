@@ -1,0 +1,111 @@
+body ,h1{
+  color: #595959;
+  font-family: copperplate, sans-serif;
+}
+input, select, p {
+  border-style: none;
+  display: inline-block;
+  font-size: 14px;
+  outline: none;
+  padding: 6px 12px;
+
+}
+input {
+  margin-bottom: 10px;
+  min-width: 60%;
+}
+.search-box {
+  border: 1px solid #ddd;
+  float: right;
+  margin-top: 20px;
+  padding: 0 6px; 
+  /*width: 230px;*/
+}
+input[ng-model="searchTodo"] {
+  /*box-shadow: 0px 1px 1px #bbb;*/
+  border-color: #fff;
+  margin-bottom: 0;
+  padding-left: 0;
+  width: 200px;
+}
+input[ng-model="todo.task"] {
+  border-left: 1px solid #ddd;
+}
+a[href=""]:hover {
+  border: 1px solid #ccc;
+  color: #a55;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  
+}
+.form-ctrl {
+  border: 1px solid #ddd;
+  border-color: #ddd;
+  width: 100%;
+}
+.glyphicon {
+  margin: 0px;
+}
+select {
+  border: 1px solid #fff;
+  -webkit-appearance: none;
+  width: 70px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  border-bottom: 1px solid #ccc;
+}
+select.do {
+  background: #cfe;
+}
+select.doing {
+  background: #ff0;
+}
+select.done {
+  background: #ccc;
+}
+.count {
+  border: 1px solid #ddd;
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 6px 12px;
+}
+
+@media (max-width: 500px) {
+  .glyphicon {
+    /*padding: 0 6px;*/
+    margin-top: 4px;
+  }
+  input[ng-model="searchTodo"] {
+    display: none;
+    width: 100%;
+  }
+  .search-box:hover,
+  .search-box.foo {
+    /*display: block;*/
+    float: none;
+    /*padding: 0 6px;*/
+    /*position: relative;*/
+  }
+  .search-box:hover .glyphicon,
+  .glyphicon.foo {
+    display: none;
+  }
+  .search-box:hover input,
+  input:focus {
+    display: inline-block;
+  }
+}
+
+
+
+
+
+
+
