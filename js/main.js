@@ -1,7 +1,20 @@
 $("#new-todo").focus();
 
 var TodoCtrl = function ($scope) {
-  $scope.todos = [];
+  $scope.todos = [
+    {
+      task: 'Eat',
+      status: 'do'
+    },
+    {
+      task: 'Sleep',
+      status: 'do'
+    },
+    {
+      task: 'Code',
+      status: 'doing'
+    }
+  ];
   
   $scope.addTodo = function () {   // Add a new todo item
     $scope.todos.push({

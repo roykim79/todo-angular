@@ -43,6 +43,7 @@
     </ul>
     
     <!-- This is a list of status doing -->
+    <h2>In progress</h2>
     <ul>
       <li ng-repeat="todo in (todos | filter:{status:'doing'})">
         <span ng-class="{do: todo.status == 'do', doing: todo.status == 'doing', done: todo.status == 'done'}">{{ todo.task }}</span>
