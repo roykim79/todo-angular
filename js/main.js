@@ -13,6 +13,10 @@ var TodoCtrl = function ($scope) {
     {
       task: 'Code',
       status: 'doing'
+    },
+    {
+      task: 'Apply for jobs',
+      status: 'doing'
     }
   ];
   

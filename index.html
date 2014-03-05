@@ -21,9 +21,9 @@
     
     <!-- Dashboard filtered by status-->
     <section class="container dashboard">
-      <span class="count">{{ todos.length }}</span> Tasks
-      <span class="count">{{ (todos | filter:{status:'doing'}).length }}</span> In Progress
-      <span class="count">{{ (todos | filter:{status:'done'}).length }}</span> Done
+      <span class="badge">{{ todos.length }}</span> Tasks
+      <span class="badge">{{ (todos | filter:{status:'doing'}).length }}</span> In Progress
+      <span class="badge">{{ (todos | filter:{status:'done'}).length }}</span> Done
     </section>
     
     <!-- List of items ordered by status-->
