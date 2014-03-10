@@ -1,29 +1,27 @@
 body ,h1{
-  color: #595959;
+  background: #333;
+  color: #eee;
   font-family: copperplate, sans-serif;
 }
 input, select, p {
-  border-style: none;
+  border: none;
   display: inline-block;
   font-size: 14px;
   outline: none;
-  padding: 6px 12px;
 
 }
 input {
+  border: none;
+  background: transparent;
   margin-bottom: 10px;
   min-width: 60%;
+  padding: 6px 12px;
 }
-.search-box {
-  border: 1px solid #ddd;
-  float: right;
-  margin-top: 20px;
-  padding: 0 6px; 
-  /*width: 230px;*/
+input#new-todo {
+  border: 2px solid #999;
 }
+
 input[ng-model="searchTodo"] {
-  /*box-shadow: 0px 1px 1px #bbb;*/
-  border-color: #fff;
   margin-bottom: 0;
   padding-left: 0;
   width: 200px;
@@ -31,44 +29,14 @@ input[ng-model="searchTodo"] {
 input[ng-model="todo.task"] {
   border-left: 1px solid #ddd;
 }
+a {
+  color: #900;
+}
 a[href=""]:hover {
-  border: 1px solid #ccc;
-  color: #a55;
   display: inline-block;
   font-weight: bold;
   text-decoration: none;
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
   
-}
-.form-ctrl {
-  border: 1px solid #ddd;
-  border-color: #ddd;
-  width: 100%;
-}
-.glyphicon {
-  margin: 0px;
-}
-select {
-  border: 1px solid #fff;
-  -webkit-appearance: none;
-  width: 70px;
-}
-ul {
-  list-style: none;
-  padding: 0;
-}
-li {
-  border-bottom: 1px solid #ccc;
-}
-select.do {
-  background: #cfe;
-}
-select.doing {
-  background: #ff0;
-}
-select.done {
-  background: #ccc;
 }
 .count {
   border: 1px solid #ddd;
@@ -76,10 +44,51 @@ select.done {
   margin-bottom: 15px;
   padding: 6px 12px;
 }
+.dashboard {
+  margin-bottom: 10px;
+}
+.form-ctrl {
+  color: #fff;
+  width: 100%;
+}
+.glyphicon {
+  margin: 0px;
+}
+.search-box {
+  border: 1px solid #ddd;
+  float: right;
+  margin-top: 20px;
+  padding: 0 6px; 
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 0px;
+  border-bottom: 1px solid #ccc;
+}
+select {
+  background: transparent;
+  border-radius: none;
+  text-align: center;
+  -webkit-appearance: none;
+  width: 70px;
+}
+select.do {
+  border-bottom: 5px solid green;
+}
+select.doing {
+  border-bottom: 5px solid #ff0;
+}
+select.done {
+  border-bottom: 5px solid #ccc;
+}
+
 
 @media (max-width: 500px) {
   .glyphicon {
-    /*padding: 0 6px;*/
     margin-top: 4px;
   }
   input[ng-model="searchTodo"] {
@@ -88,10 +97,7 @@ select.done {
   }
   .search-box:hover,
   .search-box.foo {
-    /*display: block;*/
     float: none;
-    /*padding: 0 6px;*/
-    /*position: relative;*/
   }
   .search-box:hover .glyphicon,
   .glyphicon.foo {
