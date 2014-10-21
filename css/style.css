@@ -1,6 +1,6 @@
 body ,h1{
-  background: #333;
-  color: #eee;
+  background: #fcfcfc;
+  color: #555;
   font-family: copperplate, sans-serif;
 }
 input, select, p {
@@ -11,7 +11,6 @@ input, select, p {
 
 }
 input {
-  border: none;
   background: transparent;
   margin-bottom: 10px;
   min-width: 60%;
@@ -48,7 +47,7 @@ a[href=""]:hover {
   margin-bottom: 10px;
 }
 .form-ctrl {
-  color: #fff;
+  color: #555;
   width: 100%;
 }
 .glyphicon {

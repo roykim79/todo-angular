@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="initial-scale=1">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <meta charset=utf-8 />
 <title>My Todo List | AngularJS</title>
@@ -11,9 +10,10 @@
 <body ng-controller="TodoCtrl">
   <div class="container">
     <div class='search-box'>
-      <span class="glyphicon glyphicon-filter"></span>
+      <span class="glyphicon glyphicon-search"></span>
       <input type="text" placeholder="Search..." class="form-ctrl" ng-model="searchTodo" ng-keydown="kyd($event)">
     </div>
+    <a href="http://github.com/roykim79/todo-angular/blob/master/js/main.js" target="_blank"><a href="http://github.com/roykim79/todo-angular/blob/master/index.html" target="_blank">See Code</a></a>
     <h1>My To Do List</h1>
     
     <!-- Form to add new item -->
