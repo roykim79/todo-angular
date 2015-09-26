@@ -3,29 +3,51 @@ $("#new-todo").focus();
 var TodoCtrl = function ($scope) {
   $scope.todos = [
     {
-      task: 'Eat',
-      status: 'do'
-    },
-    {
-      task: 'Sleep',
-      status: 'do'
-    },
-    {
       task: 'Code',
       status: 'doing'
     },
     {
-      task: 'Apply for jobs',
-      status: 'doing'
+      task: 'Sleep',
+      status: 'do'
     }
   ];
-  
-  $scope.addTodo = function () {   // Add a new todo item
-    $scope.todos.push({
-      task: $scope.newTodo,
-      status: 'do'
-    });
+  // $scope.todos = [
+  //   {
+  //     task: 'Code',
+  //     status: 'doing'
+  //   },
+  //   {
+  //     task: 'Learn Angular JS',
+  //     status: 'done'
+  //   },
+  //   {
+  //     task: 'Add undo feature',
+  //     status: 'do'
+  //   },
+  //   {
+  //     task: 'Move dashboard to bottom',
+  //     status: 'do'
+  //   },
+  //   {
+  //     task: 'Call Mom - let her know I\'m ok',
+  //     status: 'do'
+  //   },
+    
+  // ];
 
+  $scope.notDone = function(todo) {
+    return (todo.status != 'done');
+  };
+  
+  $scope.addTodo = function ($event) {   // Add a new todo item
+    if ($scope.newTodo) {
+      console.log($event);
+      $scope.todos.push({
+        task: $scope.newTodo,
+        status: 'do'
+      });
+    };
+      
     $scope.newTodo = "";
     return false;
   };
@@ -35,6 +57,12 @@ var TodoCtrl = function ($scope) {
     $scope.todos.splice($index, 1);
     
     return false;
+  };
+
+  $scope.updateTodoStatus = function ($index, status, $event) {
+    console.log($event);
+    console.log(status);
+    $scope.todos[$index].status = status;
   };
 
   $scope.kyd = function (e) {
@@ -58,10 +86,48 @@ $searchBar.on("blur",function(){
   $(".search-box").removeClass("foo");
   //TodoCtrl.$scope.searchTodo = "";
 });
-// $searchBar.keydown(function(){
-//   if (event.keyCode === 27) {
-//     $searchBar.trigger("blur");
-//     $("#new-todo").focus();
-//   }
-// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  

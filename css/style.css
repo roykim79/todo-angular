@@ -1,88 +1,308 @@
-body ,h1{
-  background: #fcfcfc;
-  color: #555;
-  font-family: copperplate, sans-serif;
+/**************************************************
+* Layout
+**************************************************/
+
+.container {
+  padding: 0;
 }
-input, select, p {
+
+.line,
+.left-margin,
+.line-space {
+  font-size: 16px;
+  position: relative;
+}
+.left-margin,
+.line-space {
+  display: inline-block;
+  /*float: left;*/
+}
+.line {
+  background: #FFFC89;
+  border-bottom: 2px solid #75CB81;
+  box-shadow: 2px 2px 1px #FFFC89, 
+              3px 3px 1px #555, 
+              5px 5px 1px #FFFC89,
+              6px 6px 1px #000;
+}
+
+.first.line {
+  border-top: 2px solid #75CB81;
+}
+
+.left-margin {
+  display: inline-block;
+  padding-left: 5px;
+  width: 17%;
+}
+.line-space {
+  border-left: 4px double #FB9C75;
+  box-sizing: border-box;
+  display: inline-block;
+  padding-left: 1%;
+  width: 80%;
+}
+
+#header .line,
+#header .left-margin,
+#header .line-space {
+  /*position: relative;*/
+}
+
+
+
+/**************************************************
+* Base
+**************************************************/
+
+body {
+  background: #666;
+  /*background: #432;*/
+  box-shadow: 2px 2px 2px #fff;
+  color: #333;
+  font-family: 'Architects Daughter', sans-serif;
+  margin: 0 auto;
+  max-width: 600px; 
+  /*text-align: center;*/
+}
+
+
+h1 {
+  font-size: 32px;
+  margin-left: 5px;
+  margin-bottom: 0;
+  text-align: left;
+}
+h2 {
+  /*border-bottom: 1px solid #555;*/
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+  margin: 2px 0 0;
+  padding-bottom: 0;
+  text-decoration: underline;
+}
+input, 
+select,
+textarea {
   border: none;
   display: inline-block;
-  font-size: 14px;
+  /*font-size: 16px;*/
   outline: none;
-
 }
-input {
+input,
+textarea {
   background: transparent;
-  margin-bottom: 10px;
-  min-width: 60%;
-  padding: 6px 12px;
-}
-input#new-todo {
-  border: 2px solid #999;
+  padding: 0;
 }
 
-input[ng-model="searchTodo"] {
-  margin-bottom: 0;
-  padding-left: 0;
-  width: 200px;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-input[ng-model="todo.task"] {
-  border-left: 1px solid #ddd;
+
+
+.top-bar {
+  background: #6B3913;
+  box-shadow: 2px 2px 1px #6B3913, 
+              3px 3px 1px #555, 
+              5px 5px 1px #6B3913
+              6px 6px 1px #000;
+  padding: 1% 0;
+  text-align: center;
 }
-a {
-  color: #900;
-}
-a[href=""]:hover {
-  display: inline-block;
-  font-weight: bold;
-  text-decoration: none;
-  
-}
+
 .count {
-  border: 1px solid #ddd;
   display: inline-block;
-  margin-bottom: 15px;
-  padding: 6px 12px;
+  margin-right: 10px;
+  text-align: center;
+  width: 20px;
 }
 .dashboard {
-  margin-bottom: 10px;
+  margin: 0;
+  padding: 0;
 }
 .form-ctrl {
   color: #555;
   width: 100%;
 }
-.glyphicon {
-  margin: 0px;
-}
+
+
+/* ******************** Search ******************** */
 .search-box {
-  border: 1px solid #ddd;
-  float: right;
-  margin-top: 20px;
-  padding: 0 6px; 
+  background: #fff;
+  background: rgba(255,255,255,.6);
+  border-radius: 3px;
+  padding: 0 2%;
+  color: #333;
+  display: inline-block;
+  width: 50%;
+}
+.glyphicon-search {
+  display: inline-block;
+}
+input[ng-model="searchTodo"],
+textarea[ng-model="searchTodo"] {
+  color: #333;
+  display: inline-block;
+  width: 88%;
+}
+/* ***** placeholder text ***** */
+::-webkit-input-placeholder {
+  color: #595959;
+}
+:-moz-placeholder {
+  color: #595959;
+  opacity:  1;
+}
+::-moz-placeholder {
+  color:    #595959;
+  opacity:  1;
+}
+:-ms-input-placeholder {
+  color:    #595959;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+/*****************************************/
+
+
+/*Make elements flushed to bottom*/
+.status.left-margin {
+  clear: both;
+  cursor: pointer;
+  overflow: visible;
+  /*vertical-align: baseline;*/
+  /*padding-top: 10px;*/
 }
-li {
+.todo-description.line-space {
+  display: inline-block;
+
+}
+.status.left-margin span {
+
+}
+
+
+.todo-list-items {
+  /*border-right: none;*/
+}
+
+.todo-list-item {
   padding: 0px;
-  border-bottom: 1px solid #ccc;
 }
+.todo-description {
+  line-height: 20px;
+  /*padding-top: 8px;*/
+}
+.todo-description input,
+.todo-description textarea {
+  line-height: 1.5;
+  width: 90%;
+}
+.left-margin.select {
+  padding-top: 8px;
+  text-align: center;
+}
+.left-margin.do {
+  background: #bce8f1;
+}
+.status {
+  /*padding-top: 7px;*/
+  position: relative;
+  text-transform: capitalize;
+}
+.status .glyphicon-option-vertical {
+  position: absolute;
+  right: 0;
+
+}
+.status-menu {
+  background: #000;
+  color: #555;
+  /*opacity: .8;*/
+  position: absolute;
+  right: -15px;
+  top: -5px;
+  z-index: 1;
+}
+.status-menu ul {
+  background: #FFFC89;
+  border-top: 8px solid #6B3913;
+  box-shadow: 2px 3px 3px #777, -2px 3px 3px #777;
+
+}
+.status-menu li {
+  /*border-bottom: 2px solid #75CB81;*/
+  padding: 5px 15px; 
+}
+ul.do .do,
+ul.doing .doing,
+ul.done .done {
+  font-weight: bold;
+  color: #000;
+}
+
+
+
+
+#add-todo .left-margin {
+  color: #888;
+  text-align: right;
+}
+
+/*****************Status**********************/
+
 select {
   background: transparent;
-  border-radius: none;
+  height: 25px;
+  margin-left: 5px;
   text-align: center;
-  -webkit-appearance: none;
   width: 70px;
 }
-select.do {
-  border-bottom: 5px solid green;
+
+.todo-description .do {
+  font-weight: bold;
+  position: relative;
 }
-select.doing {
-  border-bottom: 5px solid #ff0;
+
+.todo-description .done {
+  color: #888;
+  text-decoration: line-through;
 }
-select.done {
-  border-bottom: 5px solid #ccc;
+
+
+/****** Remove sign ***** */
+.glyphicon-remove-sign {
+  cursor: pointer;
+  padding-bottom: 5px;
+  margin-right: 5px;
+}
+
+.todo-description input:focus ~ .glyphicon-remove-sign {
+}
+
+/*form*/
+#add-todo .line-space {
+  padding-top: 10px;
+}
+#add-todo .glyphicon-plus {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+@media (max-width: 620px) {
+  .line-space {
+    /*width: 80%;*/
+  }
+  .tab {
+    width: 32.9%;
+  }
 }
 
 
@@ -91,20 +311,25 @@ select.done {
     margin-top: 4px;
   }
   input[ng-model="searchTodo"] {
-    display: none;
-    width: 100%;
+    /*display: none;*/
+    /*width: 100%;*/
   }
-  .search-box:hover,
-  .search-box.foo {
-    float: none;
+  .search-box:hover {
+    /*float: none;*/
   }
-  .search-box:hover .glyphicon,
-  .glyphicon.foo {
-    display: none;
+  .search-box:hover .glyphicon {
+    /*display: none;*/
   }
   .search-box:hover input,
   input:focus {
     display: inline-block;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    width: 100%;
   }
 }
 
