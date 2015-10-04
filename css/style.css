@@ -57,15 +57,13 @@
 
 body {
   background: #666;
-  /*background: #432;*/
   box-shadow: 2px 2px 2px #fff;
   color: #333;
   font-family: 'Architects Daughter', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0 auto;
   max-width: 600px; 
-  /*text-align: center;*/
 }
-
 
 h1 {
   font-size: 32px;
@@ -73,8 +71,8 @@ h1 {
   margin-bottom: 0;
   text-align: left;
 }
+
 h2 {
-  /*border-bottom: 1px solid #555;*/
   display: inline-block;
   font-size: 24px;
   line-height: 24px;
@@ -82,14 +80,15 @@ h2 {
   padding-bottom: 0;
   text-decoration: underline;
 }
+
 input, 
 select,
 textarea {
   border: none;
   display: inline-block;
-  /*font-size: 16px;*/
   outline: none;
 }
+
 input,
 textarea {
   background: transparent;
@@ -101,7 +100,6 @@ ul {
   margin: 0;
   padding: 0;
 }
-
 
 .top-bar {
   background: #6B3913;
@@ -119,17 +117,19 @@ ul {
   text-align: center;
   width: 20px;
 }
+
 .dashboard {
   margin: 0;
   padding: 0;
 }
+
 .form-ctrl {
-  color: #555;
+  color: #333;
   width: 100%;
 }
 
-
 /* ******************** Search ******************** */
+
 .search-box {
   background: #fff;
   background: rgba(255,255,255,.6);
@@ -139,19 +139,20 @@ ul {
   display: inline-block;
   width: 50%;
 }
+
 .glyphicon-search {
   display: inline-block;
 }
+
 input[ng-model="searchTodo"],
 textarea[ng-model="searchTodo"] {
   color: #333;
   display: inline-block;
   width: 88%;
 }
+
 /* ***** placeholder text ***** */
-::-webkit-input-placeholder {
-  color: #595959;
-}
+::-webkit-input-placeholder { color: #595959; }
 :-moz-placeholder {
   color: #595959;
   opacity:  1;
@@ -166,8 +167,6 @@ textarea[ng-model="searchTodo"] {
 
 /*****************************************/
 
-
-/*Make elements flushed to bottom*/
 .status.left-margin {
   clear: both;
   cursor: pointer;
@@ -175,6 +174,7 @@ textarea[ng-model="searchTodo"] {
   /*vertical-align: baseline;*/
   /*padding-top: 10px;*/
 }
+
 .todo-description.line-space {
   display: inline-block;
 
@@ -182,7 +182,6 @@ textarea[ng-model="searchTodo"] {
 .status.left-margin span {
 
 }
-
 
 .todo-list-items {
   /*border-right: none;*/
@@ -208,7 +207,6 @@ textarea[ng-model="searchTodo"] {
   background: #bce8f1;
 }
 .status {
-  /*padding-top: 7px;*/
   position: relative;
   text-transform: capitalize;
 }
@@ -233,7 +231,6 @@ textarea[ng-model="searchTodo"] {
 
 }
 .status-menu li {
-  /*border-bottom: 2px solid #75CB81;*/
   padding: 5px 15px; 
 }
 ul.do .do,
@@ -244,14 +241,16 @@ ul.done .done {
 }
 
 
-
-
 #add-todo .left-margin {
   color: #888;
   text-align: right;
 }
-
-/*****************Status**********************/
+#done .status,
+#done .description input{
+  color: #888;
+  text-decoration: line-through !important;
+}
+/***************** Status **********************/
 
 select {
   background: transparent;
@@ -291,11 +290,36 @@ select {
 }
 
 
+.glyphicon {
+  color: #777;
+}
+
+/*UNDO*/
+#undo-option {
+  background: #fff;
+  color: #555;
+  font-weight: bold;
+  padding: 10px; 
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+#undo {
+  color: #F05B0D;
+  cursor: pointer;
+  float: right;
+  font-weight: lighter;
+}
+#undo:hover {
+  color: #D15817;
+  /*color: green;*/
+}
 
 
 
-
-
+/**************************************************
+* Media Queries
+**************************************************/
 @media (max-width: 620px) {
   .line-space {
     /*width: 80%;*/

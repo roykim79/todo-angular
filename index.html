@@ -4,9 +4,7 @@
 	<meta name="viewport" content="initial-scale=1">
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-	<meta charset=utf-8 />
-	<title>My Todo List | AngularJS</title>
+	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Lato:400,700' rel='stylesheet' type='text/css'>	<title>My Todo List | AngularJS</title>
 </head>
 
 <body ng-controller="TodoCtrl">
@@ -66,28 +64,18 @@
 					<span class="glyphicon glyphicon-option-vertical"></span>
 					<div ng-show="isMenuOpen" id="replyForm" class="status-menu">
 						<ul ng-class="{{todo.status}}">
-							<li ng-click="updateTodoStatus($index, 'do', $event )" class="do">Do</li>
-							<li ng-click="updateTodoStatus($index, 'doing')"  class="doing">Doing</li>
-							<li ng-click="updateTodoStatus($index, 'done')"  class="done">Done</li>
+							<li ng-click="updateTodoStatus(todo, 'do' )" class="do">Do</li>
+							<li ng-click="updateTodoStatus(todo, 'doing')"  class="doing">Doing</li>
+							<li ng-click="updateTodoStatus(todo, 'done')"  class="done">Done</li>
 						</ul>
 					</div>
-
-
-
-					<!-- <select name="" id="" ng-model="todo.status">
-						<option value="do">Do</option>
-						<option value="doing">Doing</option>
-						<option value="done">Done</option>
-					</select> -->
-
-
 				</div>
 
 				<div class="todo-description line-space">
 					<!-- <form ng-submit="updateTodoStus($index)"> -->
-						<input ng-class="todo.status" type="text" ng-model="todo.task" maxlength="30">
+						<input ng-class="todo.status" type="text" ng-model="todo.task" maxlength="30"><span ng-click="removeTodo(todo)" class="glyphicon glyphicon-remove-sign"></span>
 					<!-- </form> -->
-					<span ng-click="removeTodo($index)" class="glyphicon glyphicon-remove-sign"></span>
+					
 				</div>
 
 			</li>
@@ -102,8 +90,8 @@
 			<span ng-click="addTodo($event)" class="glyphicon glyphicon-plus"></span>
 		</div>
 		<div class="line-space">
-			<form action="" class="form-container" ng-submit="addTodo($event)">
-				<input type="text" placeholder="Add new task..." class="form-ctrl" id="new-todo" ng-model="newTodo">
+			<form name="myForm" class="form-container" ng-submit="addTodo(newTodo) ">
+				<input type="text" name="input" placeholder="Add new task..." class="form-ctrl" id="new-todo" ng-model="newTodo">
 			</form>
 		</div>
 	</section>
@@ -127,10 +115,22 @@
 		</div>
 
 		<div ng-repeat="todo in todos | filter:{status: 'done'}" class="line">
-			<div class="left-margin">&nbsp;</div>
-			<div class="line-space">{{todo.task}}</div>
+			<div class="status left-margin" ng-click="isMenuOpen = !isMenuOpen" ng-class="todo.status">
+				<span>{{todo.status}}</span>
+				<span class="glyphicon glyphicon-option-vertical"></span>
+				<div ng-show="isMenuOpen" class="status-menu">
+					<ul ng-class="{{todo.status}}">
+						<li ng-click="updateTodoStatus(todo, 'do' )" class="do">Do</li>
+						<li ng-click="updateTodoStatus(todo, 'doing')"  class="doing">Doing</li>
+						<li ng-click="updateTodoStatus(todo, 'done')"  class="done">Done</li>
+					</ul>
+				</div>
+			</div>
+			<div class="line-space todo-description">
+				<input ng-class="todo.status" type="text" ng-model="todo.task" maxlength="30">
+				<span ng-click="removeTodo(todo)" class="glyphicon glyphicon-remove-sign"></span>
+			</div>
 		</div>
-		
 	</section>
 
 
@@ -147,13 +147,16 @@
 			<div class="line-space">&nbsp;</div>
 		</div>
 		<div class="line">
-			<div class="left-margin">&nbsp;</div>
+			<div class="left-margin" ng-click="undoRemove()">&nbsp;</div>
 			<div class="line-space">&nbsp;</div>
 		</div>
 		<div class="line">
 			<div class="left-margin">&nbsp;</div>
 			<div class="line-space">&nbsp;</div>
 		</div>
+	</div>
+	<div id="undo-option" ng-show="undoVisible">
+		Item deleted  <span id="undo" ng-click="undoRemove()">Undo</span>
 	</div>
 	
 
@@ -165,7 +168,7 @@
 
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script data-require="angular.js@1.0.x" src="http://code.angularjs.org/1.2.10/angular.min.js" data-semver="1.0.7"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
