@@ -20,10 +20,10 @@
 .line {
   background: #FFFC89;
   border-bottom: 2px solid #75CB81;
-  box-shadow: 2px 2px 1px #FFFC89, 
+  /*box-shadow: 2px 2px 1px #FFFC89, 
               3px 3px 1px #555, 
               5px 5px 1px #FFFC89,
-              6px 6px 1px #000;
+              6px 6px 1px #000;*/
 }
 
 .first.line {
@@ -49,7 +49,9 @@
   /*position: relative;*/
 }
 
-
+.body-container {
+  background: yellow;
+}
 
 /**************************************************
 * Base
@@ -57,39 +59,52 @@
 
 body {
   background: #666;
-  /*background: #432;*/
   box-shadow: 2px 2px 2px #fff;
   color: #333;
   font-family: 'Architects Daughter', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0 auto;
   max-width: 600px; 
-  /*text-align: center;*/
 }
-
 
 h1 {
   font-size: 32px;
-  margin-left: 5px;
+  margin-left: -60px;
   margin-bottom: 0;
-  text-align: left;
+  text-align: center;
 }
+
 h2 {
-  /*border-bottom: 1px solid #555;*/
   display: inline-block;
   font-size: 24px;
+  font-weight: bold;
   line-height: 24px;
   margin: 2px 0 0;
   padding-bottom: 0;
+  /*padding: 10px 0;*/
+  /*text-decoration: underline;*/
+}
+.list-preview h2 {
+  padding: 10px 0;
+}
+.list-view h2 {
+  padding-top: 20px;
   text-decoration: underline;
 }
+.done h2 {
+  color: #888;
+  font-size: 16px;
+  font-style: italic;
+}
+
 input, 
 select,
 textarea {
   border: none;
   display: inline-block;
-  /*font-size: 16px;*/
   outline: none;
 }
+
 input,
 textarea {
   background: transparent;
@@ -102,34 +117,19 @@ ul {
   padding: 0;
 }
 
-
 .top-bar {
   background: #6B3913;
-  box-shadow: 2px 2px 1px #6B3913, 
-              3px 3px 1px #555, 
-              5px 5px 1px #6B3913
-              6px 6px 1px #000;
   padding: 1% 0;
   text-align: center;
 }
 
-.count {
-  display: inline-block;
-  margin-right: 10px;
-  text-align: center;
-  width: 20px;
-}
-.dashboard {
-  margin: 0;
-  padding: 0;
-}
 .form-ctrl {
-  color: #555;
+  color: #333;
   width: 100%;
 }
 
-
 /* ******************** Search ******************** */
+
 .search-box {
   background: #fff;
   background: rgba(255,255,255,.6);
@@ -139,19 +139,20 @@ ul {
   display: inline-block;
   width: 50%;
 }
+
 .glyphicon-search {
   display: inline-block;
 }
+
 input[ng-model="searchTodo"],
 textarea[ng-model="searchTodo"] {
   color: #333;
   display: inline-block;
   width: 88%;
 }
+
 /* ***** placeholder text ***** */
-::-webkit-input-placeholder {
-  color: #595959;
-}
+::-webkit-input-placeholder { color: #595959; }
 :-moz-placeholder {
   color: #595959;
   opacity:  1;
@@ -164,94 +165,112 @@ textarea[ng-model="searchTodo"] {
   color:    #595959;
 }
 
-/*****************************************/
+/**************************************************
+* Lists
+**************************************************/
+#lists,
+.todo-list-margin,
+.section-list {
+  background: #FFFC89;
+}
+#lists {
+  /*background: #D6D48B;*/
+  padding-bottom: 10px; 
+}
+.list-preview .list {
+  background: #FFFC89;
+  /*border: 2px solid #999;*/
+  box-shadow: 0px 0px 2px #888,
+             -0px -0px 2px #888, 
+              0px -0px 2px #888, 
+             -0px 0px 2px #888;
+  cursor: pointer;
+  margin: 10px 5px 0;
+  padding: 5px;
+}
 
-
-/*Make elements flushed to bottom*/
 .status.left-margin {
   clear: both;
   cursor: pointer;
   overflow: visible;
-  /*vertical-align: baseline;*/
-  /*padding-top: 10px;*/
 }
+
 .todo-description.line-space {
   display: inline-block;
-
-}
-.status.left-margin span {
-
-}
-
-
-.todo-list-items {
-  /*border-right: none;*/
 }
 
 .todo-list-item {
   padding: 0px;
 }
+
 .todo-description {
   line-height: 20px;
-  /*padding-top: 8px;*/
 }
+
 .todo-description input,
 .todo-description textarea {
   line-height: 1.5;
   width: 90%;
 }
+
 .left-margin.select {
   padding-top: 8px;
   text-align: center;
 }
+
 .left-margin.do {
-  background: #bce8f1;
+  background: #2DF522;
 }
+
 .status {
-  /*padding-top: 7px;*/
   position: relative;
   text-transform: capitalize;
 }
+
 .status .glyphicon-option-vertical {
   position: absolute;
   right: 0;
-
 }
+
 .status-menu {
   background: #000;
   color: #555;
-  /*opacity: .8;*/
   position: absolute;
   right: -15px;
   top: -5px;
   z-index: 1;
 }
+
 .status-menu ul {
   background: #FFFC89;
   border-top: 8px solid #6B3913;
   box-shadow: 2px 3px 3px #777, -2px 3px 3px #777;
-
 }
 .status-menu li {
-  /*border-bottom: 2px solid #75CB81;*/
   padding: 5px 15px; 
 }
-ul.do .do,
-ul.doing .doing,
-ul.done .done {
-  font-weight: bold;
-  color: #000;
+
+.status.do li.do,
+.status.doing li.doing,
+.status.done li.done {
+  color: #888;
+  cursor: default;
 }
 
-
-
-
-#add-todo .left-margin {
+.add-todo .left-margin {
   color: #888;
   text-align: right;
 }
 
-/*****************Status**********************/
+.done .status,
+.done .description input{
+  color: #888;
+  text-decoration: line-through !important;
+}
+/***************** Status **********************/
+.col-label {
+  /*background-color: rgba(0,0,0,.1);*/
+}
 
 select {
   background: transparent;
@@ -271,7 +290,6 @@ select {
   text-decoration: line-through;
 }
 
-
 /****** Remove sign ***** */
 .glyphicon-remove-sign {
   cursor: pointer;
@@ -283,19 +301,45 @@ select {
 }
 
 /*form*/
-#add-todo .line-space {
+.add-todo .line-space {
   padding-top: 10px;
 }
-#add-todo .glyphicon-plus {
+.add-todo .glyphicon-plus {
   cursor: pointer;
 }
 
 
+.glyphicon {
+  color: #777;
+}
+
+/*UNDO*/
+#undo-option {
+  background: #fff;
+  color: #555;
+  font-weight: bold;
+  max-width: 600px;
+  padding: 10px; 
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+#undo {
+  color: #F05B0D;
+  cursor: pointer;
+  float: right;
+  font-weight: lighter;
+}
+#undo:hover {
+  color: #D15817;
+  /*color: green;*/
+}
 
 
 
-
-
+/**************************************************
+* Media Queries
+**************************************************/
 @media (max-width: 620px) {
   .line-space {
     /*width: 80%;*/

@@ -4,109 +4,189 @@
 	<meta name="viewport" content="initial-scale=1">
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-	<meta charset=utf-8 />
-	<title>My Todo List | AngularJS</title>
+	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Lato:400,700' rel='stylesheet' type='text/css'>	<title>My Todo List | AngularJS</title>
 </head>
 
 <body ng-controller="TodoCtrl">
+<div class="body-container">
 
 	<!-- *******************************************************
 	Header 
 	********************************************************  -->
 	<header id="header">
-		<!-- Top Bar - Search Box -->
 		<div class="top-bar">
 			<div class='search-box'>
 				<span class="glyphicon glyphicon-search"></span>
-				<input type="text" placeholder="Search..." class="form-ctrl" ng-model="searchTodo" ng-keydown="kyd($event)">
+				<input 
+				  ng-model="searchTodo"
+				  class="form-ctrl" 
+				  placeholder="Search..."
+				  type="text">
 			</div>
 		</div>
-
-		<!-- Heading -->
-		<div class="line">
-			<div class="left-margin">&nbsp;</div>
-			<div class="line-space">
-				<h1>To Do List</h1>
-			</div>
-		</div>
-		
 	</header>
 
 	<!-- *******************************************************
-	Dashboard 
+	Lists view 
 	********************************************************  -->
-	<!-- <section id="dashboard" class="line">
-		<div class="left-margin">&nbsp;</div>
-		<div class="line-space">
-			<ul class="tabs">
-				<li class="tab total"><span class="count">{{ todos.length }}</span> Total</li>
-				<li class="tab in-progress"><span class="count">{{ (todos | filter:{status:'doing'}).length }}</span> In Progress</li>
-				<li class="tab done"><span class="count">{{ (todos | filter:{status:'done'}).length }}</span> Done</li>
-			</ul>
+	<section id="lists" ng-show="curView == 'lists'">
+		<div class="line">
+			<div class="left-margin">&nbsp;</div>
+			<div class="line-space">
+				<h1>Notes</h1>
+			</div>
 		</div>
-	</section> -->
-
-	<!-- <div class="line gutter">
-		<div class="left-margin">&nbsp;</div>
-		<div class="line-space">
-			<h2>All To Dos</h2>	
-			<span class="glyphicon glyphicon-option-vertical"></span>
-		</div>
-	</div> -->
-
-	<!-- *******************************************************
-	Todo Items 
-	********************************************************  -->
-	<section id="todo-list-items">
 		<ul>
-			<li ng-repeat="todo in todos | filter: notDone | filter: searchTodo" class="todo-list-item line">
-				<div class="status left-margin" ng-click="isMenuOpen = !isMenuOpen" ng-class="todo.status">
-					<span>{{todo.status}}</span>
-					<span class="glyphicon glyphicon-option-vertical"></span>
-					<div ng-show="isMenuOpen" id="replyForm" class="status-menu">
-						<ul ng-class="{{todo.status}}">
-							<li ng-click="updateTodoStatus($index, 'do', $event )" class="do">Do</li>
-							<li ng-click="updateTodoStatus($index, 'doing')"  class="doing">Doing</li>
-							<li ng-click="updateTodoStatus($index, 'done')"  class="done">Done</li>
-						</ul>
+			<li 
+			  ng-repeat="list in lists" 
+			  ng-click="goToList(list)" 
+			  class="list-preview">
+				<div class="">
+					<div class="list">
+						<h2 ng-show="list.title">{{list.title}}</h2>
+						<ul>
+							<li ng-repeat="todo in list.todos | filter:notDone | limitTo:2">
+								{{todo.task}}
+							</li>
+						</ul>	
 					</div>
-
-
-
-					<!-- <select name="" id="" ng-model="todo.status">
-						<option value="do">Do</option>
-						<option value="doing">Doing</option>
-						<option value="done">Done</option>
-					</select> -->
-
-
 				</div>
-
-				<div class="todo-description line-space">
-					<!-- <form ng-submit="updateTodoStus($index)"> -->
-						<input ng-class="todo.status" type="text" ng-model="todo.task" maxlength="30">
-					<!-- </form> -->
-					<span ng-click="removeTodo($index)" class="glyphicon glyphicon-remove-sign"></span>
-				</div>
-
 			</li>
-		</ul>
+		</ul>	
 	</section>
 
 	<!-- *******************************************************
-	Add Todo Form 
+	List view 
 	********************************************************  -->
-	<section id="add-todo" class="line">
-		<div class="left-margin">
-			<span ng-click="addTodo($event)" class="glyphicon glyphicon-plus"></span>
+
+		  
+	<section ng-show="curView == 'list'" ng-click="closeMenu()" class="section-list">
+		<div 
+		  ng-repeat="list in lists" 
+		  ng-show="curList==list"
+		  class="list-view">
+			<div class="line">
+				<div ng-click="goToLists()" class="left-margin">
+					<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;
+				</div>
+				<div class="line-space">
+					<h2>
+						<input 
+						  ng-model="list.title" 
+						  type="text" 
+						  placeholder="Title">			
+					</h2>
+				</div>
+			</div>
+		
+			<!-- <div class="line">
+				<div class="col-label left-margin">Status</div>
+				<div class="col-label line-space">Description</div>
+			</div> -->
+			<div class="line">
+				<div class="col-label left-margin">&nbsp;</div>
+				<div class="col-label line-space">&nbsp;</div>
+			</div>
+
+			<!-- *******************************************************
+			Todo Items 
+			********************************************************  -->
+			<article class="todo-list-items">
+				<ul>
+					<li 
+					  ng-repeat="todo in list.todos | filter: notDone | filter: searchTodo" 
+					  class="todo-list-item line">
+						<div 
+						  class="status left-margin" 
+						  ng-click="toggleMenu(todo, $event)" 
+						  ng-class="todo.status">
+							<span>{{todo.status}}</span>
+							<span class="glyphicon glyphicon-option-vertical"></span>
+							<div ng-show="list.openMenu == todo" class="status-menu">
+								<ul>
+									<li ng-click="updateStatus(todo, 'do', $event)" class="do">Do</li>
+									<li ng-click="updateStatus(todo, 'doing', $event)" class="doing">Doing</li>
+									<li ng-click="updateStatus(todo, 'done', $event)" class="done">Done</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="todo-description line-space">
+							<input 
+							  ng-class="todo.status" 
+							  type="text" 
+							  ng-model="todo.task" 
+							  maxlength="30">
+							<span ng-click="removeTodo(list, todo)" class="glyphicon glyphicon-remove-sign"></span>
+						</div>
+
+					</li>
+				</ul>
+			</article>
 		</div>
-		<div class="line-space">
-			<form action="" class="form-container" ng-submit="addTodo($event)">
-				<input type="text" placeholder="Add new task..." class="form-ctrl" id="new-todo" ng-model="newTodo">
-			</form>
+
+		<!-- *******************************************************
+		Add Todo Form 
+		********************************************************  -->
+
+		<article class="add-todo line">
+			<div class="left-margin">
+				<span ng-click="addTodo()" class="glyphicon glyphicon-plus"></span>
+			</div>
+			<div class="line-space">
+				<form 
+				  name="myForm{{$index}}" 
+				  class="form-container" 
+				  ng-submit="addTodo(newTodo)">
+					<input 
+					  type="text" 
+					  placeholder="Add new task..." 
+					  class="new-todo" 
+					  ng-model="newTodo">
+				</form>
+			</div>
+		</article>
+
+
+		<!-- *******************************************************
+		Done Items
+		********************************************************  -->
+		<div 
+		  ng-repeat="list in lists"
+		  ng-show="curList==list"
+		  class="list-view">
+			<article class="done">
+				<div class="line">
+					<div class="left-margin">&nbsp;</div>
+					<div class="line-space">
+						<h2>Done</h2>
+					</div>
+				</div>
+
+				<div ng-repeat="todo in list.todos | filter:{status: 'done'}" class="line">
+					<div 
+					  ng-click="toggleMenu(todo, $event)"
+					  ng-class="todo.status"
+					  class="status left-margin">
+						<span>{{todo.status}}</span>
+						<span class="glyphicon glyphicon-option-vertical"></span>
+						<div ng-show="list.openMenu == todo" class="status-menu">
+							<ul ng-class="{{todo.status}}">
+								<li ng-click="updateStatus(todo, 'do', $event)" class="do">Do</li>
+								<li ng-click="updateStatus(todo, 'doing', $event)" class="doing">Doing</li>
+								<li ng-click="updateStatus(todo, 'done', $event)" class="done">Done</li>
+							</ul>
+						</div>
+					</div>
+					<div class="line-space todo-description">
+						<input ng-class="todo.status" type="text" ng-model="todo.task" maxlength="30">
+						<span ng-click="removeTodo(list, todo)" class="glyphicon glyphicon-remove-sign"></span>
+					</div>
+				</div>
+			</article>
 		</div>
 	</section>
+
 
 	<div class="todo-list-margin">
 		<div class="line">
@@ -115,31 +195,6 @@
 		</div>
 	</div>
 
-	<!-- *******************************************************
-	Done Items
-	********************************************************  -->
-	<section id="done">
-		<div class="line">
-			<div class="left-margin">&nbsp;</div>
-			<div class="line-space">
-				<h2>Done</h2>
-			</div>
-		</div>
-
-		<div ng-repeat="todo in todos | filter:{status: 'done'}" class="line">
-			<div class="left-margin">&nbsp;</div>
-			<div class="line-space">{{todo.task}}</div>
-		</div>
-		
-	</section>
-
-
-
-
-
-
-
-
 
 	<div class="todo-list-margin">
 		<div class="line">
@@ -147,13 +202,16 @@
 			<div class="line-space">&nbsp;</div>
 		</div>
 		<div class="line">
-			<div class="left-margin">&nbsp;</div>
+			<div class="left-margin" ng-click="undoRemove()">&nbsp;</div>
 			<div class="line-space">&nbsp;</div>
 		</div>
 		<div class="line">
 			<div class="left-margin">&nbsp;</div>
 			<div class="line-space">&nbsp;</div>
 		</div>
+	</div>
+	<div id="undo-option" class="group" ng-show="undoVisible">
+		Item deleted  <span id="undo" ng-click="undoRemove()">Undo</span>
 	</div>
 	
 
@@ -165,7 +223,8 @@
 
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script data-require="angular.js@1.0.x" src="http://code.angularjs.org/1.2.10/angular.min.js" data-semver="1.0.7"></script>
 	<script src="js/main.js"></script>
+</div>
 </body>
 </html>
